@@ -1,0 +1,11 @@
+{
+    "name": "Guanomancer.Comguanomancercore.Tests",
+    "references": [
+        "Guanomancer.Comguanomancercore"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

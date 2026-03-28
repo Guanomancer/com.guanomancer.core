@@ -1,0 +1,10 @@
+{
+    "name": "Guanomancer.Comguanomancercore.Editor",
+    "references": [
+      "Guanomancer.Comguanomancercore"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

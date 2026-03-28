@@ -1,1 +1,2 @@
-# com.guanomancer.core
+# Guanomancer Core Plugin for Unity 6.#
+

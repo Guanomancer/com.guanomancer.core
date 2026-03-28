@@ -1,0 +1,14 @@
+{
+    "name": "Guanomancer.Comguanomancercore.Editor.Tests",
+    "references": [
+        "Guanomancer.Comguanomancercore.Editor",
+        "Guanomancer.Comguanomancercore"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
