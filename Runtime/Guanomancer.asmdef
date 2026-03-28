@@ -1,6 +1,6 @@
 {
-    "name": "Guanomancer.Core",
-    "rootNamespace": "Guanomancer.Core",
+    "name": "Guanomancer",
+    "rootNamespace": "Guanomancer",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

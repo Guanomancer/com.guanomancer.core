@@ -4,7 +4,7 @@
 //
 // -----------------------------------------------------------------------------
 
-namespace Guanomancer.Comguanomancercore
+namespace Guanomancer
 {
     /// <summary>
     /// Provide a general description of the public class.

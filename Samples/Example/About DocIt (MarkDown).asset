@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bde8a83884f5b54192bfc7a6678b0e1, type: 3}
+  m_Name: About DocIt (MarkDown)
+  m_EditorClassIdentifier: Assembly-CSharp::DocItMd
+  isEditing: 0
+  isTocFolded: 0
+  headerIconPath: 
+  markdownContent: "# DocIt MarkDown\nThis is the same concept as the DocIt.\n\n##
+    About\nUse it to place **readmes and to-dos** directly where the designers and
+    developers need them, documenting **usage, implementation, etc.**\n\n *When documentation
+    is where you need it, when you need it, you have to put in effort to get things
+    wrong.*\n *..it totally doable though, but you must dedicate yourself to mischif
+    and shenanigans...*\n/Guanomancer, 2026\n\n## Formatting\n### Headers\n# # Top
+    Level\n## ## Second Level\n### ### Third Level\n#### #### Fourth Level\n#####
+    ##### Fifth Level\n###### ###### Final Level\n\n### Line Seperator\n\\-\\-\\-
+    Line seperator\n---\n\n### Font\n\\*\\* **Bold** \\*\\*\n\\* *Italic* \\*\n\\~\\~
+    ~~Strike Through~~ \\~\\~\n< u > <u>Underline</u> < /u >\n< color=#2288ff > <color=#2288ff>Color</color>
+    < /color >\n### Lists\n- \\- Bullet List\n1. 1. Ordered List item 1\n2. 2. Ordered
+    List item 2\n\n### To-Do List:\n*[x] \\*[x] Do the thing.\n*[ ] \\*[ ] Do the
+    other thing.\n\n### Code Blocks\n'''\nusing UnityEngine;\n\npublic class SayStuff
+    : MonoBehaviour\n{\n  private void Start()\n  {\n    Debug.Log(\"Saying 'Stuff'!\");\n 
+    }\n}\n'''\n\n### Images\n![Alternative Text](Packages/com.guanomancer.core/Editor/DocIt/DocItIcon.png)\n\n###
+    Assets\n[DocIt Markdown Script](Assets/Tools/Docs/DocItMd.cs)\n"

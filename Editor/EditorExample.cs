@@ -4,7 +4,7 @@
 //
 // -----------------------------------------------------------------------------
 
-namespace Guanomancer.Comguanomancercore.Editor
+namespace Guanomancer.Editor
 {
     /// <summary>
     /// Provide a general description of the public class.
