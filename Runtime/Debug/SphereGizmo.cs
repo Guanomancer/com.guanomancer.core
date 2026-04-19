@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Guanomancer
 {
-    public class CircleGizmo : MonoBehaviour
+    public class SphereGizmo : MonoBehaviour
     {
         [SerializeField] Color _color = Color.blue;
         [SerializeField] float _radius = 0.1f;
