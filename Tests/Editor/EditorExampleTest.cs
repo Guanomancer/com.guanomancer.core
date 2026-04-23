@@ -4,7 +4,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-namespace Guanomancer.Comguanomancercore.Editor.Tests 
+namespace Guanomancer.Editor.Tests 
 {
 	
 	class EditorExampleTest 

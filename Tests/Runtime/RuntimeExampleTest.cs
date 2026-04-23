@@ -3,7 +3,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-namespace Guanomancer.Comguanomancercore.Tests 
+namespace Guanomancer.Tests 
 {
 	
 	class RuntimeExampleTest 
