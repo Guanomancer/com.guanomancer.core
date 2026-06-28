@@ -1,9 +1,8 @@
 using UnityEngine;
-using Guanomancer;
 
 namespace Guanomancer.Samples
 {
-    public class InteractionExample : ActorInteractionMonoBehaviour,
+    public class InteractionExample : UnitInteractionMonoBehaviour,
         IInteractionInfo<NoInteractionData>,
         IInteractionInfo<SomeInteractionData>
     {
@@ -17,9 +16,9 @@ namespace Guanomancer.Samples
         [Button("Try Get Valid Interactions")]
         public void BTN_TryGetValidInteractions()
         {
-            Debug.Assert(Actor != null, $"{nameof(InteractionExample)} must be part of or a child of an {nameof(Guanomancer.Actor)}.", this);
+            Debug.Assert(Unit != null, $"{nameof(InteractionExample)} must be part of or a child of an {nameof(Guanomancer.Unit)}.", this);
 
-            if (Actor.TryGetValidInteractions<SomeInteractionData>(new(), out var someInteraction, out var someCount))
+            if (Unit.TryGetValidInteractions<SomeInteractionData>(new(), out var someInteraction, out var someCount))
             {
                 foreach (var interaction in someInteraction) Debug.Log($"Valid: {nameof(SomeInteractionData)} ({interaction.name})");
             }
@@ -27,7 +26,7 @@ namespace Guanomancer.Samples
             {
                 Debug.Log($"No valid {nameof(SomeInteractionData)}");
             }
-            if (Actor.TryGetValidInteractions<NoInteractionData>(new(), out var noInteractions, out var noCount))
+            if (Unit.TryGetValidInteractions<NoInteractionData>(new(), out var noInteractions, out var noCount))
             {
                 foreach (var interaction in noInteractions) Debug.Log($"Valid: {nameof(NoInteractionData)} ({interaction.name})");
             }
