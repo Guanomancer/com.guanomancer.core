@@ -1,8 +1,8 @@
-using UnityEngine;
+// using UnityEngine;
 
-namespace Guanomancer
-{
-    public class Method : MonoBehaviour
-    {
-    }
-}
+// namespace Guanomancer
+// {
+//     public class Method : MonoBehaviour
+//     {
+//     }
+// }
