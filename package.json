@@ -1,7 +1,7 @@
 {
   "name": "com.guanomancer.core",
   "displayName": "Guano Core",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "unity": "6000.4",
   "unityRelease": "0f1",
   "description": "Core functionality package free under MIT license.\n\nFeatures: \n\u25aa Inspector coloring by functionality and category.\n\u25aa AutoField, AutoProperty\n\u25aa Behaviour Hierarchy (HFSM)\n\u25aa Logging & Tracing\n\u25aa Markdown Notes\n\u25aa Object tagging and inter-op.",

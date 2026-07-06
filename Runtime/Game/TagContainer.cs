@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
+using System;
 
 namespace Guanomancer
 {
     [System.Serializable]
     public class TagContainer<T> where T : TagBase
     {
-        [field: SerializeField] public Dictionary<T, float> Tags { get; private set; } = new();
+        public Dictionary<T, float> Tags { get; private set; } = new();
 
         public void Add(T tag)
         {
