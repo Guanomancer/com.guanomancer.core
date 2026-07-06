@@ -1,25 +1,28 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TaggedAnimEvent : MonoBehaviour
+namespace Guanomancer
 {
-    [SerializeField] TaggedAnimEventEntry[] _events;
-
-    public void AnimEvent(AnimationEventTag tag)
+    public class TaggedAnimEvent : MonoBehaviour
     {
-        foreach(var entry in _events)
+        [SerializeField] TaggedAnimEventEntry[] _events;
+
+        public void AnimEvent(AnimationEventTag tag)
         {
-            if (entry.Tag == tag)
+            foreach (var entry in _events)
             {
-                entry.Event.Invoke();
+                if (entry.Tag == tag)
+                {
+                    entry.Event.Invoke();
+                }
             }
         }
     }
-}
 
-[System.Serializable]
-public struct TaggedAnimEventEntry
-{
-    public AnimationEventTag Tag;
-    public UnityEvent Event;
+    [System.Serializable]
+    public struct TaggedAnimEventEntry
+    {
+        public AnimationEventTag Tag;
+        public UnityEvent Event;
+    }
 }
