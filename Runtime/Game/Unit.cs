@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Categorization;
 
 namespace Guanomancer
 {
@@ -81,7 +82,7 @@ namespace Guanomancer
 
     public interface IUnitInteractionInfo
     {
-        public Unit Unit { get; }
+        Unit Unit { get; }
         GameObject gameObject { get; }
         string name { get; }
     }
