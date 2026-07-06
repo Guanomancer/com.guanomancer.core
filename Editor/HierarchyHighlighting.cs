@@ -1,6 +1,9 @@
-using System.Collections.Generic;
+using Unity.Hierarchy;
+using Unity.Hierarchy.Editor;
+using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Guanomancer.Editor
 {
@@ -9,10 +12,54 @@ namespace Guanomancer.Editor
     {
         static HierarchyHighlighting()
         {
+#if UNITY_6000_6_OR_NEWER
+            HierarchyWindow.BindViewItem += OnBindViewItem;
+#else
             EditorApplication.hierarchyWindowItemByEntityIdOnGUI += HierarchyWindowItemOnGUI;
+#endif
         }
 
         private static List<IHierarchySettings> _hierarchySettings = new();
+
+#if UNITY_6000_6_OR_NEWER
+        private static void OnBindViewItem(HierarchyWindow window, HierarchyView view, HierarchyViewItem item)
+        {
+            item.style.backgroundColor = new StyleColor();
+            if (!(item.Handler is HierarchyGameObjectHandler handler)) return;
+            var entityId = handler.GetEntityId(item.Node);
+            if (!(EditorUtility.EntityIdToObject(entityId) is GameObject gameObject)) return;
+            gameObject.GetComponents(_hierarchySettings);
+            if (_hierarchySettings.Count == 1 && _hierarchySettings[0].FullRowColoring)
+            {
+                var highlightColor = _hierarchySettings[0].ColorInHierarchy;
+                highlightColor.a = gameObject.activeInHierarchy ? .1f : .03f;
+                item.style.backgroundColor = new StyleColor(highlightColor);
+            }
+            else if (_hierarchySettings.Count > 0)
+            {
+                for (int i = 0; i < _hierarchySettings.Count; i++)
+                {
+                    var highlightColor = _hierarchySettings[_hierarchySettings.Count - i - 1].ColorInHierarchy;
+                    highlightColor.a = gameObject.activeInHierarchy ? .1f : .03f;
+                    item.style.backgroundColor = new StyleColor(highlightColor);
+                }
+            }
+            else
+            {
+                var components = gameObject.GetComponents<MonoBehaviour>();
+                foreach (var component in components)
+                {
+                    if (string.IsNullOrEmpty(component?.GetType()?.Namespace))
+                    {
+                        item.style.backgroundColor = new StyleColor(new Color(.2f, .6f, 1f, (
+                                gameObject.activeInHierarchy ? 0.08f : 0.05f
+                            )));
+                        return;
+                    }
+                }
+            }
+        }
+#else
         private static void HierarchyWindowItemOnGUI(EntityId entityId, Rect selectionRect)
         {
             if (EditorUtility.EntityIdToObject(entityId) is GameObject gameObject)
@@ -81,5 +128,6 @@ namespace Guanomancer.Editor
 
             return rects;
         }
+#endif
     }
 }
