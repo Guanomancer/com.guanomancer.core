@@ -5,7 +5,7 @@ public class TaggedAnimEvent : MonoBehaviour
 {
     [SerializeField] TaggedAnimEventEntry[] _events;
 
-    public void AnimEvent(AnimEventTag tag)
+    public void AnimEvent(AnimationEventTag tag)
     {
         foreach(var entry in _events)
         {
@@ -20,6 +20,6 @@ public class TaggedAnimEvent : MonoBehaviour
 [System.Serializable]
 public struct TaggedAnimEventEntry
 {
-    public AnimEventTag Tag;
+    public AnimationEventTag Tag;
     public UnityEvent Event;
 }

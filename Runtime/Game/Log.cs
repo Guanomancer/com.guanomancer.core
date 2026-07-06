@@ -2,8 +2,10 @@ using UnityEngine;
 
 namespace Guanomancer
 {
-    public static class Logging
+    public static class Log
     {
+        private const string FRAME_COUNT_CHARACTERS = "D3";
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void OnBeforeFirstSceneLoaded()
         {
@@ -31,12 +33,9 @@ namespace Guanomancer
                 _frameCounterTone = !_frameCounterTone;
             }
             var toneColor = _frameCounterTone ? "AA" : "88";
-            var frameInfo = $"<color=#{(_frameCounterTone ? "AAAAAA" : "888888")}>[{frame.ToString("D5")}]</color>";
-            var compInfo = self == null ? "" : $"<color=#88{toneColor}FF>{PadClamp(self?.name, 16)} . {PadClamp(self?.GetType().Name, 24)}</color>: ";
+            var frameInfo = $"<color=#CCCCCC>[{frame.ToString(FRAME_COUNT_CHARACTERS)}]</color>";
+            var compInfo = self == null ? "" : $"<color=#88{toneColor}FF>{self?.name}.{self?.GetType().Name}</color>: ";
             Debug.Log($"{frameInfo}{compInfo}{new string(' ', _indents * 2)}{message}", context);
-
-            string PadClamp(string name, int size) =>
-                name.Substring(0, System.Math.Min(name.Length, size)).PadLeft(size);
         }
     }
 }

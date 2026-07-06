@@ -9,8 +9,8 @@ namespace Guanomancer.Samples
         [Button("Can Interact")]
         public void BTN_CanInteract()
         {
-            Debug.Log($"Can Interact (Some): {TryGetComponent<IInteractionInfo<SomeInteractionData>>(out var interaction) && interaction.CanInteract(new SomeInteractionData { })}");
-            Debug.Log($"Can Interact (None): {TryGetComponent<IInteractionInfo<NoInteractionData>>(out var noInteraction) && noInteraction.CanInteract(new NoInteractionData { })}");
+            this.Info($"Can Interact (Some): {TryGetComponent<IInteractionInfo<SomeInteractionData>>(out var interaction) && interaction.CanInteract(new SomeInteractionData { })}");
+            this.Info($"Can Interact (None): {TryGetComponent<IInteractionInfo<NoInteractionData>>(out var noInteraction) && noInteraction.CanInteract(new NoInteractionData { })}");
         }
 
         [Button("Try Get Valid Interactions")]
@@ -20,19 +20,25 @@ namespace Guanomancer.Samples
 
             if (Unit.TryGetValidInteractions<SomeInteractionData>(new(), out var someInteraction, out var someCount))
             {
-                foreach (var interaction in someInteraction) Debug.Log($"Valid: {nameof(SomeInteractionData)} ({interaction.name})");
+                foreach (var interaction in someInteraction)
+                {
+                    this.Info($"Valid: {nameof(SomeInteractionData)} ({interaction.name})");
+                }
             }
             else
             {
-                Debug.Log($"No valid {nameof(SomeInteractionData)}");
+                this.Info($"No valid {nameof(SomeInteractionData)}");
             }
             if (Unit.TryGetValidInteractions<NoInteractionData>(new(), out var noInteractions, out var noCount))
             {
-                foreach (var interaction in noInteractions) Debug.Log($"Valid: {nameof(NoInteractionData)} ({interaction.name})");
+                foreach (var interaction in noInteractions)
+                {
+                    this.Info($"Valid: {nameof(NoInteractionData)} ({interaction.name})");
+                }
             }
             else
             {
-                Debug.Log($"No valid {nameof(NoInteractionData)}");
+                this.Info($"No valid {nameof(NoInteractionData)}");
             }
         }
 
