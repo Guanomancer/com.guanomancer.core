@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Guanomancer
 {
-    public abstract class SingletonBehaviour<T> : MonoBehaviour
-        where T : SingletonBehaviour<T>
+    public interface ISingletonBehaviour<T>
+        where T : MonoBehaviour, ISingletonBehaviour<T>
     {
         private static T _currentInstance;
 
@@ -13,7 +13,7 @@ namespace Guanomancer
             {
                 if (_currentInstance == null)
                 {
-                    _currentInstance = FindAnyObjectByType<T>(FindObjectsInactive.Include);
+                    _currentInstance = Object.FindAnyObjectByType<T>(FindObjectsInactive.Include);
                     if(_currentInstance == null)
                     {
                         Log.Warn(null, $"Unable to find and instance of {typeof(T).Name}.");
