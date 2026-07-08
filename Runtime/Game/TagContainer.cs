@@ -29,7 +29,7 @@ namespace Guanomancer
             if (Tags.TryGetValue(tag, out float existingValue))
             {
                 SetValueSilent(tag, existingValue + value);
-                TagChanged?.Invoke(tag, value, existingValue);
+                TagChanged?.Invoke(tag, existingValue + value, existingValue);
             }
             else
             {
@@ -70,7 +70,7 @@ namespace Guanomancer
 
             if (Tags.TryGetValue(tag, out float existingValue) && value != existingValue)
             {
-                SetValueSilent(tag, existingValue + value);
+                SetValueSilent(tag, value);
                 TagChanged?.Invoke(tag, value, existingValue);
             }
             else if (value > 0f)
