@@ -1,13 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Assertions;
-using System;
 
 namespace Guanomancer
 {
     [System.Serializable]
     public class TagContainer<T> where T : TagBase
     {
+        public delegate void TagEventHandler(T tag, float newValue, float oldValue);
+
+        public event TagEventHandler TagChanged;
+
         public Dictionary<T, float> Tags { get; private set; } = new();
 
         public void Add(T tag)
@@ -15,6 +18,7 @@ namespace Guanomancer
             if (!Tags.ContainsKey(tag))
             {
                 Tags.Add(tag, 1f);
+                TagChanged?.Invoke(tag, 1f, 0f);
             }
         }
 
@@ -24,17 +28,23 @@ namespace Guanomancer
 
             if (Tags.TryGetValue(tag, out float existingValue))
             {
-                SetValue(tag, existingValue + value);
+                SetValueSilent(tag, existingValue + value);
+                TagChanged?.Invoke(tag, value, existingValue);
             }
             else
             {
-                SetValue(tag, value);
+                SetValueSilent(tag, value);
+                TagChanged?.Invoke(tag, value, 0f);
             }
         }
 
         public void Remove(T tag)
         {
-            Tags.Remove(tag);
+            if (Tags.TryGetValue(tag, out float existingValue))
+            {
+                Tags.Remove(tag);
+                TagChanged?.Invoke(tag, 0f, existingValue);
+            }
         }
 
         public void Remove(T tag, float value)
@@ -43,7 +53,9 @@ namespace Guanomancer
 
             if (Tags.TryGetValue(tag, out float existingValue))
             {
-                SetValue(tag, existingValue - value);
+                var newValue = Mathf.Max(0f, existingValue - value);
+                SetValueSilent(tag, newValue);
+                TagChanged?.Invoke(tag, newValue, existingValue);
             }
         }
 
@@ -53,6 +65,22 @@ namespace Guanomancer
         }
 
         public void SetValue(T tag, float value)
+        {
+            Assert.IsFalse(value <= 0, "Value must be greater than 0.");
+
+            if (Tags.TryGetValue(tag, out float existingValue) && value != existingValue)
+            {
+                SetValueSilent(tag, existingValue + value);
+                TagChanged?.Invoke(tag, value, existingValue);
+            }
+            else if (value > 0f)
+            {
+                SetValueSilent(tag, value);
+                TagChanged?.Invoke(tag, value, 0f);
+            }
+        }
+
+        private void SetValueSilent(T tag, float value)
         {
             Assert.IsFalse(value < 0, "Value must not be negative.");
 
@@ -120,21 +148,21 @@ namespace Guanomancer
         }
 
         public bool Is(T tag, float value) => Tags.TryGetValue(tag, out float tagValue) && tagValue == value ? true : false;
-        
+
         public bool Are(T[] tags, float value)
         {
-            for(int i = 0; i < tags.Length; i++)
+            for (int i = 0; i < tags.Length; i++)
             {
-                if(!Is(tags[i], value)) return false;
+                if (!Is(tags[i], value)) return false;
             }
             return true;
         }
 
         public bool AnyAre(T[] tags, float value)
         {
-            for(int i = 0; i < tags.Length; i++)
+            for (int i = 0; i < tags.Length; i++)
             {
-                if(Is(tags[i], value)) return true;
+                if (Is(tags[i], value)) return true;
             }
             return false;
         }
