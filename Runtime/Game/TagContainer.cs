@@ -103,16 +103,17 @@ namespace Guanomancer
 
         public bool Has(T tag)
         {
-            return Tags.ContainsKey(tag);
+            return tag != null && Tags.ContainsKey(tag);
         }
 
         public bool Has(T tag, float threshold)
         {
-            return Tags.TryGetValue(tag, out float value) && value >= threshold;
+            return tag != null && Tags.TryGetValue(tag, out float value) && value >= threshold;
         }
 
         public bool HasAll(T[] tags)
         {
+            if (tags == null) return true;
             for (int i = 0; i < tags.Length; i++)
             {
                 if (!Tags.ContainsKey(tags[i])) return false;
@@ -122,6 +123,7 @@ namespace Guanomancer
 
         public bool HasAll(T[] tags, float threshold)
         {
+            if (tags == null) return true;
             for (int i = 0; i < tags.Length; i++)
             {
                 if (!Has(tags[i], threshold)) return false;
@@ -131,6 +133,7 @@ namespace Guanomancer
 
         public bool HasAny(T[] tags)
         {
+            if (tags == null) return false;
             for (int i = 0; i < tags.Length; i++)
             {
                 if (Tags.ContainsKey(tags[i])) return true;
@@ -140,6 +143,7 @@ namespace Guanomancer
 
         public bool HasAny(T[] tags, float threshold)
         {
+            if (tags == null) return false;
             for (int i = 0; i < tags.Length; i++)
             {
                 if (Has(tags[i], threshold)) return true;
@@ -147,22 +151,24 @@ namespace Guanomancer
             return false;
         }
 
-        public bool Is(T tag, float value) => Tags.TryGetValue(tag, out float tagValue) && tagValue == value ? true : false;
+        public bool Equals(T tag, float value) => Tags.TryGetValue(tag, out float tagValue) && tagValue == value ? true : false;
 
-        public bool Are(T[] tags, float value)
+        public bool Equals(T[] tags, float value)
         {
+            if (tags == null) return false;
             for (int i = 0; i < tags.Length; i++)
             {
-                if (!Is(tags[i], value)) return false;
+                if (!Equals(tags[i], value)) return false;
             }
             return true;
         }
 
-        public bool AnyAre(T[] tags, float value)
+        public bool AnyEquals(T[] tags, float value)
         {
+            if (tags == null) return false;
             for (int i = 0; i < tags.Length; i++)
             {
-                if (Is(tags[i], value)) return true;
+                if (Equals(tags[i], value)) return true;
             }
             return false;
         }
