@@ -64,6 +64,7 @@ namespace Guanomancer
         }
     }
 
+    [RequireComponent(typeof(Unit))]
     public abstract class UnitInteractionMonoBehaviour : MonoBehaviour, IUnitInteractionInfo
     {
         private Unit _unitCache;
@@ -92,6 +93,5 @@ namespace Guanomancer
         bool CanInteract(T interactionData);
         bool TryInteract(T interactionData) => TryInteract(ref interactionData);
         bool TryInteract(ref T interactionData);
-
     }
 }
