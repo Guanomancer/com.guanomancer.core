@@ -5,7 +5,7 @@ namespace Guanomancer.Samples
 {
     public class Game : GameModule<Game>
     {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void BeforeSceneLoad() => Debug.Assert(Instance != null);
     }
 
