@@ -10,6 +10,8 @@ namespace Guanomancer
         public delegate void TagEventHandler(T tag, float newValue, float oldValue);
 
         public event TagEventHandler TagChanged;
+        public event TagEventHandler TagGained;
+        public event TagEventHandler TagLost;
 
         public Dictionary<T, float> Tags { get; private set; } = new();
 
@@ -18,6 +20,7 @@ namespace Guanomancer
             if (!Tags.ContainsKey(tag))
             {
                 Tags.Add(tag, 1f);
+                TagGained?.Invoke(tag, 1f, 0f);
                 TagChanged?.Invoke(tag, 1f, 0f);
             }
         }
@@ -34,6 +37,7 @@ namespace Guanomancer
             else
             {
                 SetValueSilent(tag, value);
+                TagGained?.Invoke(tag, value, 0f);
                 TagChanged?.Invoke(tag, value, 0f);
             }
         }
@@ -43,6 +47,7 @@ namespace Guanomancer
             if (Tags.TryGetValue(tag, out float existingValue))
             {
                 Tags.Remove(tag);
+                TagLost?.Invoke(tag, 0f, existingValue);
                 TagChanged?.Invoke(tag, 0f, existingValue);
             }
         }
@@ -55,6 +60,7 @@ namespace Guanomancer
             {
                 var newValue = Mathf.Max(0f, existingValue - value);
                 SetValueSilent(tag, newValue);
+                TagLost?.Invoke(tag, 0f, existingValue);
                 TagChanged?.Invoke(tag, newValue, existingValue);
             }
         }
@@ -66,16 +72,18 @@ namespace Guanomancer
 
         public void SetValue(T tag, float value)
         {
-            Assert.IsFalse(value <= 0, "Value must be greater than 0.");
+            Assert.IsFalse(value < 0, "Value must be equal to or greater than 0.");
 
             if (Tags.TryGetValue(tag, out float existingValue) && value != existingValue)
             {
                 SetValueSilent(tag, value);
+                if (value == 0) TagLost?.Invoke(tag, value, existingValue);
                 TagChanged?.Invoke(tag, value, existingValue);
             }
             else if (value > 0f)
             {
                 SetValueSilent(tag, value);
+                TagGained(tag, value, 0f);
                 TagChanged?.Invoke(tag, value, 0f);
             }
         }
