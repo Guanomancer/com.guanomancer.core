@@ -7,7 +7,10 @@ namespace Guanomancer
     {
         private static T _currentInstance;
 
-        public static T Instance
+        [System.Obsolete("Use Current instead.")]
+        public static T Instance => Current;
+        
+        public static T Current
         {
             get
             {
