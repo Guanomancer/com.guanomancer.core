@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Categorization;
 
 namespace Guanomancer
 {
     public class Unit : MonoBehaviour
     {
-        [field: SerializeField] public TagContainer<UnitTag> Tags { get; private set; } = new();
+        [field: HideInInspector] public TagContainer<UnitTag> Tags { get; private set; } = new();
 
         public static string[] GetNamesOfUnits(Unit[] units)
         {
