@@ -9,7 +9,17 @@ namespace Guanomancer
 
         [System.Obsolete("Use Current instead.")]
         public static T Instance => Current;
-        
+
+        public static bool HasCurrent
+        {
+            get
+            {
+                if (_currentInstance != null) return true;
+                if (_currentInstance = FindAnyObjectByType<T>(FindObjectsInactive.Include)) return true;
+                return false;
+            }
+        }
+
         public static T Current
         {
             get
@@ -17,7 +27,7 @@ namespace Guanomancer
                 if (_currentInstance == null)
                 {
                     _currentInstance = FindAnyObjectByType<T>(FindObjectsInactive.Include);
-                    if(_currentInstance == null)
+                    if (_currentInstance == null)
                     {
                         Log.Warn(null, $"Unable to find and instance of {typeof(T).Name}.");
                     }

@@ -412,7 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9a4861de5c6e991a2d9a9e20755eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Guanomancer::Guanomancer.Game
-  _gameStateLogging: 0
 --- !u!4 &563614556
 Transform:
   m_ObjectHideFlags: 0
