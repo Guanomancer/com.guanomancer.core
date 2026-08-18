@@ -641,19 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c806fb3c9af24b0db89c6942242a9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Guanomancer::Guanomancer.Unit
-  <Tags>k__BackingField:
-    rid: 7692650141953556540
-  references:
-    version: 2
-    RefIds:
-    - rid: 7692650141953556540
-      type: {class: 'TagContainer`1[[Guanomancer.UnitTag, Guanomancer]]', ns: Guanomancer, asm: Guanomancer}
-      data:
-        _keys: []
-        _values: []
-        _tags:
-        - Tag: {fileID: 0}
-          Value: 0
 --- !u!4 &2146563715
 Transform:
   m_ObjectHideFlags: 0
