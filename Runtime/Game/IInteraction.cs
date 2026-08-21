@@ -7,28 +7,52 @@ namespace Guanomancer
         bool CanInteract(T info);
         bool TryInteract(T info);
 
-        public static bool Can(GameObject go, T info) =>
-            go.TryGetComponent<IInteraction<T>>(out var interaction) && interaction.CanInteract(info);
+        public static bool Can(GameObject go, T info)
+        {
+            var interaction = go.GetComponentInParent<IInteraction<T>>();
+            return interaction != null && interaction.CanInteract(info);
+        }
 
-        public static bool Can(GameObject go, T info, out IInteraction<T> interaction) =>
-            go.TryGetComponent(out interaction) && interaction.CanInteract(info);
+        public static bool Can(GameObject go, T info, out IInteraction<T> interaction)
+        {
+            interaction = go.GetComponentInParent<IInteraction<T>>();
+            return interaction != null && interaction.CanInteract(info);
+        }
 
-        public static bool Try(GameObject go, T info) =>
-            go.TryGetComponent<IInteraction<T>>(out var interaction) && interaction.TryInteract(info);
+        public static bool Try(GameObject go, T info)
+        {
+            var interaction = go.GetComponentInParent<IInteraction<T>>();
+            return interaction != null && interaction.TryInteract(info);
+        }
 
-        public static bool Try(GameObject go, T info, out IInteraction<T> interaction) =>
-            go.TryGetComponent(out interaction) && interaction.TryInteract(info);
+        public static bool Try(GameObject go, T info, out IInteraction<T> interaction)
+        {
+            interaction = go.GetComponentInParent<IInteraction<T>>();
+            return interaction != null && interaction.TryInteract(info);
+        }
 
-        public static bool Can(Component component, T info) =>
-            component.gameObject.TryGetComponent<IInteraction<T>>(out var interaction) && interaction.CanInteract(info);
+        public static bool Can(Component component, T info)
+        {
+            var interaction = component.gameObject.GetComponentInParent<IInteraction<T>>();
+            return interaction != null && interaction.CanInteract(info);
+        }
 
-        public static bool Can(Component component, T info, out IInteraction<T> interaction) =>
-            component.gameObject.TryGetComponent(out interaction) && interaction.CanInteract(info);
+        public static bool Can(Component component, T info, out IInteraction<T> interaction)
+        {
+            interaction = component.gameObject.GetComponentInParent<IInteraction<T>>();
+            return interaction != null && interaction.CanInteract(info);
+        }
 
-        public static bool Try(Component component, T info) =>
-            component.gameObject.TryGetComponent<IInteraction<T>>(out var interaction) && interaction.TryInteract(info);
+        public static bool Try(Component component, T info)
+        {
+            var interaction = component.gameObject.GetComponentInParent<IInteraction<T>>();
+            return interaction != null && interaction.TryInteract(info);
+        }
 
-        public static bool Try(Component component, T info, out IInteraction<T> interaction) =>
-            component.gameObject.TryGetComponent(out interaction) && interaction.TryInteract(info);
+        public static bool Try(Component component, T info, out IInteraction<T> interaction)
+        {
+            interaction = component.gameObject.GetComponentInParent<IInteraction<T>>();
+            return interaction != null && interaction.TryInteract(info);
+        }
     }
 }
