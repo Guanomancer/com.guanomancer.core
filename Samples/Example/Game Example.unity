@@ -566,6 +566,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1735146292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1735146294}
+  - component: {fileID: 1735146293}
+  m_Layer: 0
+  m_Name: TestTagCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1735146293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735146292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68aefeb44695b496b8e5f5cd0ccc9124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Guanomancer.TestTagCondition
+  _initialTags:
+  - {fileID: 11400000, guid: f5c51afc81e144e63b026cd4d3e43b13, type: 2}
+  _initialTagsWithValues:
+  - Tag: {fileID: 11400000, guid: 4fde863830c1c4ef4862b5e6d2293b6f, type: 2}
+    Value: 2
+  _condition:
+    _operator: 10
+    _invert: 0
+    _tag: {fileID: 0}
+    _value: 1
+    _tags: []
+    _threshold: 1
+    _subConditions:
+    - rid: 771812683162583100
+    - rid: 771812683162583101
+  references:
+    version: 2
+    RefIds:
+    - rid: 771812683162583100
+      type: {class: 'TagCondition`1[[Guanomancer.GameTag, Guanomancer]]', ns: Guanomancer, asm: Guanomancer}
+      data:
+        _operator: 0
+        _invert: 0
+        _tag: {fileID: 11400000, guid: f5c51afc81e144e63b026cd4d3e43b13, type: 2}
+        _value: 1
+        _tags: []
+        _threshold: 1
+        _subConditions: []
+    - rid: 771812683162583101
+      type: {class: 'TagCondition`1[[Guanomancer.GameTag, Guanomancer]]', ns: Guanomancer, asm: Guanomancer}
+      data:
+        _operator: 3
+        _invert: 0
+        _tag: {fileID: 11400000, guid: 4fde863830c1c4ef4862b5e6d2293b6f, type: 2}
+        _value: 1
+        _tags: []
+        _threshold: 1
+        _subConditions: []
+--- !u!4 &1735146294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735146292}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2090838052
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,3 +749,4 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 2090838054}
   - {fileID: 2146563715}
+  - {fileID: 1735146294}
