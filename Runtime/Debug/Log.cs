@@ -92,5 +92,26 @@ namespace Guanomancer
             Debug.LogError($"{frameInfo}{compInfo}{new string(' ', _indents * 2)}A runtime exception occured. See next log entry for details.", context);
             Debug.LogException(exception, context);
         }
+
+        [HideInCallstack]
+        public static bool Fail(this Object self, bool failCondition, Object context = null)
+        {
+            if (!failCondition) return false;
+
+            if (context == null) context = self;
+
+            var frame = Time.frameCount;
+            if (frame != _lastLogFrame)
+            {
+                _lastLogFrame = frame;
+                _frameCounterTone = !_frameCounterTone;
+            }
+            var toneColor = _frameCounterTone ? "AA" : "88";
+            var frameInfo = $"<color=#CCCCCC>[{frame.ToString(FRAME_COUNT_CHARACTERS)}]</color>";
+            var compInfo = self == null ? " " : $" <color=#88{toneColor}FF>{self?.name}.{self?.GetType().Name}</color>: ";
+            Debug.LogError($"{frameInfo}{compInfo}{new string(' ', _indents * 2)}Guard condition failed.", context);
+
+            return true;
+        }
     }
 }
